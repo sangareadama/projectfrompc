@@ -22,32 +22,35 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = Utilisateur.builder()
+        var utilisateur = Utilisateur.builder()
                 .nom(request.getNom())
                 .prenom(request.getPrenom())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
-        repository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        repository.save(utilisateur);
+        var jwtToken = jwtService.generateToken(utilisateur);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        System.out.println("---------------->");
-        authenticationManager.authenticate(
+       /* authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
+        );*/
+        UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(
+                request.getEmail(),
+                request.getPassword()
         );
-        System.out.println("---------------->okkkkkkkkk");
-        var user = repository.findByEmail(request.getEmail())
+        authenticationManager.authenticate(authenticationToken);
+        var utilisateur = repository.findByEmail(request.getEmail())
                 .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = jwtService.generateToken(utilisateur);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
