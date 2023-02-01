@@ -1,5 +1,8 @@
 package com.sang.sangschoolback.controller;
 
+import com.sang.sangschoolback.configModel.AuthenticationRequest;
+import com.sang.sangschoolback.configModel.AuthenticationResponse;
+import com.sang.sangschoolback.configModel.RegisterRequest;
 import com.sang.sangschoolback.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

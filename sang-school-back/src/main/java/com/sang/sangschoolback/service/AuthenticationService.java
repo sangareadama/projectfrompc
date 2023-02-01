@@ -1,9 +1,9 @@
 package com.sang.sangschoolback.service;
 
 import com.sang.sangschoolback.config.JwtService;
-import com.sang.sangschoolback.controller.AuthenticationRequest;
-import com.sang.sangschoolback.controller.AuthenticationResponse;
-import com.sang.sangschoolback.controller.RegisterRequest;
+import com.sang.sangschoolback.configModel.AuthenticationRequest;
+import com.sang.sangschoolback.configModel.AuthenticationResponse;
+import com.sang.sangschoolback.configModel.RegisterRequest;
 import com.sang.sangschoolback.domain.Role;
 import com.sang.sangschoolback.domain.Utilisateur;
 import com.sang.sangschoolback.repository.UtilisateurRepository;

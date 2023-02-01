@@ -1,4 +1,4 @@
-package com.sang.sangschoolback.controller.demo;
+package com.sang.sangschoolback.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
