@@ -1,7 +1,5 @@
 package com.sang.sangschoolback.service;
 
-import com.sang.sangschoolback.controller.AuthenticationRequest;
-import com.sang.sangschoolback.controller.AuthenticationResponse;
 import com.sang.sangschoolback.domain.Utilisateur;
 import com.sang.sangschoolback.repository.UtilisateurRepository;
 import lombok.RequiredArgsConstructor;

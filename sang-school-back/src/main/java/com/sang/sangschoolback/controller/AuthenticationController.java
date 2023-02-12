@@ -1,6 +1,12 @@
 package com.sang.sangschoolback.controller;
 
+
 import com.sang.sangschoolback.domain.Utilisateur;
+
+import com.sang.sangschoolback.configModel.AuthenticationRequest;
+import com.sang.sangschoolback.configModel.AuthenticationResponse;
+import com.sang.sangschoolback.configModel.RegisterRequest;
+
 import com.sang.sangschoolback.service.AuthenticationService;
 import com.sang.sangschoolback.service.IUtilisateurService;
 import lombok.RequiredArgsConstructor;
@@ -31,9 +37,5 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
-    @GetMapping("/liste")
-    public ResponseEntity<List<Utilisateur>> listeUtilisateure(){
 
-        return ResponseEntity.ok(iUtilisateurService.listeUtilisateur());
-    }
 }

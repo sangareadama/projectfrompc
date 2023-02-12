@@ -1,4 +1,4 @@
-package com.sang.sangschoolback.controller;
+package com.sang.sangschoolback.configModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
