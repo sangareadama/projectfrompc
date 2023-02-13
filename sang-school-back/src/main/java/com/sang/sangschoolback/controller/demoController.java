@@ -27,6 +27,8 @@ public class demoController {
     @GetMapping("/liste")
     public ResponseEntity<List<Utilisateur>> listeUtilisateure(){
 
+        System.out.println("-------------------------------->"X);
+
         return ResponseEntity.ok(iUtilisateurService.listeUtilisateur());
     }
 }
