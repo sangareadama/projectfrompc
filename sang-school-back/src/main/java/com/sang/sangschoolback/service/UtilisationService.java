@@ -22,4 +22,11 @@ public class UtilisationService implements IUtilisateurService{
     public Utilisateur enregistrerUtilisateur(Utilisateur utilisateur) {
         return repository.save(utilisateur);
     }
+
+    @Override
+    public void supprimerUtilisateurParId(Utilisateur utilisateur) {
+
+       // System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+       // repository.deleteById(utilisateur.getId());
+    }
 }

@@ -19,12 +19,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
     private final IUtilisateurService iUtilisateurService;
+
+    public AuthenticationController(AuthenticationService authenticationService,IUtilisateurService iUtilisateurService) {
+        this.authenticationService = authenticationService;
+        this.iUtilisateurService=iUtilisateurService;
+    }
+
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
@@ -38,6 +44,8 @@ public class AuthenticationController {
     ){
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
+
+
 
    /* @GetMapping("/liste")
     public ResponseEntity<List<Utilisateur>> listeUtilisateure(){

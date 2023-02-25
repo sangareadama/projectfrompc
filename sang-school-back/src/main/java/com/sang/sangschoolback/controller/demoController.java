@@ -3,9 +3,7 @@ package com.sang.sangschoolback.controller;
 import com.sang.sangschoolback.domain.Utilisateur;
 import com.sang.sangschoolback.service.IUtilisateurService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,10 +23,13 @@ public class demoController {
     }
 
     @GetMapping("/liste")
-    public ResponseEntity<List<Utilisateur>> listeUtilisateure(){
-
-        System.out.println("-------------------------------->"X);
-
+    public ResponseEntity<List<Utilisateur>> listeUtilisateur(){
         return ResponseEntity.ok(iUtilisateurService.listeUtilisateur());
+    }
+    @PostMapping("/supprimer")
+    public void supprimerUtilisateur(@RequestBody Utilisateur utilisateur){
+        System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+        // iUtilisateurService.supprimerUtilisateurParId(utilisateur);
+        iUtilisateurService.supprimerUtilisateurParId(utilisateur);
     }
 }
