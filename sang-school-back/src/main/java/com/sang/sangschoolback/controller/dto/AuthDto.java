@@ -1,4 +1,4 @@
-package com.sang.sangschoolback.configModel;
+package com.sang.sangschoolback.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-    private String email;
+public class AuthDto {
+    private String username;
     String password;
 }

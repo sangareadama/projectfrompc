@@ -1,5 +1,6 @@
 package com.sang.sangschoolback.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -8,23 +9,26 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig {
 
+    @Value("${client.url.local}")
+    private String CLIENT_LOCAL;
+
+    @Value("${client.url.dev}")
+    private String CLIENT_DEV;
+
+    @Value("${client.url.prod}")
+    private String CLIENT_PROD;
     @Bean
     public WebMvcConfigurer corsConfigure(){
+
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/demo-controller/**")
-                        .allowedOrigins("http://localhost:4200")
+                registry.addMapping("/**")
+                        .allowedOrigins(CLIENT_DEV,CLIENT_LOCAL,CLIENT_PROD)
                         .allowedMethods("*")
-                        .allowedHeaders("*");
-                registry.addMapping("/api/auth/register")
-                        .allowedOrigins("http://localhost:4200")
-                        .allowedMethods("*")
-                        .allowedHeaders("*");
-                registry.addMapping("/api/auth/**")
-                        .allowedOrigins("http://localhost:4200")
-                        .allowedMethods("*");
-
+                        .allowedHeaders("*")
+                        .exposedHeaders("Authorization")
+                        .allowCredentials(true);
             }
         };
     }

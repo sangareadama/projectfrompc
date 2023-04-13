@@ -1,4 +1,4 @@
-package com.sang.sangschoolback.configModel;
+package com.sang.sangschoolback.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class AuthenticationResponse {
+public class TokenDto {
     private String token;
 
+    public String getToken() {
+        return token;
+    }
 }

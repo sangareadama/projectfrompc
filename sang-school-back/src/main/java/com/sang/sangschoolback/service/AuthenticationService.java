@@ -1,11 +1,8 @@
 package com.sang.sangschoolback.service;
 
 import com.sang.sangschoolback.config.JwtService;
-import com.sang.sangschoolback.configModel.AuthenticationRequest;
-import com.sang.sangschoolback.configModel.AuthenticationResponse;
-import com.sang.sangschoolback.configModel.RegisterRequest;
-import com.sang.sangschoolback.domain.Role;
-import com.sang.sangschoolback.domain.Utilisateur;
+import com.sang.sangschoolback.controller.dto.AuthDto;
+import com.sang.sangschoolback.controller.dto.TokenDto;
 import com.sang.sangschoolback.repository.UtilisateurRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,37 +18,17 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
-        var utilisateur = Utilisateur.builder()
-                .nom(request.getNom())
-                .prenom(request.getPrenom())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
-                .build();
-        repository.save(utilisateur);
-        var jwtToken = jwtService.generateToken(utilisateur);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
-    }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
-       /* authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );*/
+    public TokenDto authenticate(AuthDto authDto) {
         UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(
-                request.getEmail(),
-                request.getPassword()
+                authDto.getUsername(),
+                authDto.getPassword()
         );
         authenticationManager.authenticate(authenticationToken);
-        var utilisateur = repository.findByEmail(request.getEmail())
+        var utilisateur = repository.findByUsername(authDto.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(utilisateur);
-        return AuthenticationResponse.builder()
+        return TokenDto.builder()
                 .token(jwtToken)
                 .build();
     }
