@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/utilisateur")
 public class UtilisateurController {
-
     private final UtilisateurFacade utilisateurFacade;
 
     public UtilisateurController(UtilisateurFacade utilisateurFacade) {
@@ -21,7 +20,6 @@ public class UtilisateurController {
     public TableauUtilisateurDto ListeUtilisateur() {
         return utilisateurFacade.listeUtilisateur();
     }
-
     @PostMapping("/enregistrerOuModifier")
     public void enregistrerUtilisateur(@RequestBody UtilisateurDto utilisateurDto){
 
